@@ -1,6 +1,6 @@
 {
-  "name": "hello",
-  "version": "1.0.0",
+  "name": "@zzak/hello",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/zzak/box/issues"
   },
-  "homepage": "https://github.com/zzak/box#readme"
+  "homepage": "https://github.com/zzak/box#readme",
+  "gitHead": "00b39ef3ef2020556e466eb900832ab4bb25468d"
 }
