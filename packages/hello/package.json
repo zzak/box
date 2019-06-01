@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zzak/box.git"
@@ -16,5 +19,5 @@
     "url": "https://github.com/zzak/box/issues"
   },
   "homepage": "https://github.com/zzak/box#readme",
-  "gitHead": "59c896dc71bf760a2ffeafcc7c9b5943187e542e"
+  "gitHead": "3e116df72bcb1043031917df764b61f1484755c6"
 }
