@@ -1,5 +1,5 @@
 {
-  "name": "@zzak/hello",
+  "name": "hello",
   "version": "3.0.0",
   "description": "",
   "main": "index.js",
@@ -16,5 +16,5 @@
     "url": "https://github.com/zzak/box/issues"
   },
   "homepage": "https://github.com/zzak/box#readme",
-  "gitHead": "00b39ef3ef2020556e466eb900832ab4bb25468d"
+  "gitHead": "21bee9c684e6f4dd0feccda0d88c2c1e2b82ef81"
 }
