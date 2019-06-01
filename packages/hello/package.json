@@ -1,0 +1,19 @@
+{
+  "name": "hello",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zzak/box.git"
+  },
+  "author": "Zachary Scott",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zzak/box/issues"
+  },
+  "homepage": "https://github.com/zzak/box#readme"
+}
