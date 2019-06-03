@@ -18,9 +18,5 @@
   "bugs": {
     "url": "https://github.com/zzak/box/issues"
   },
-  "homepage": "https://github.com/zzak/box#readme",
-  "gitHead": "14a0812bfd14370e386d6821820273d61fe9a62a",
-  "devDependencies": {
-    "auto": "^7.0.7"
-  }
+  "homepage": "https://github.com/zzak/box#readme"
 }
