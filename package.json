@@ -1,4 +1,11 @@
 {
+  "name": "box",
+  "bolt": {
+    "workspaces": [
+      "packages/add",
+      "packages/hello"
+    ]
+  },
   "devDependencies": {
     "bolt": "^0.23.3"
   }
