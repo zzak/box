@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "bolt": "^0.23.3"
+  }
+}
