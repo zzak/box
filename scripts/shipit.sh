@@ -7,8 +7,6 @@ set -o pipefail
 
 VERSION=$(./node_modules/.bin/auto version)
 
-cat error
-
 echo "Trying to bump: $VERSION"
 
 if [ ! -z "$VERSION" ]; then
