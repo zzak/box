@@ -1,0 +1,100 @@
+version: 2.1
+
+executors:
+  node:
+    docker:
+      - image: circleci/node:10
+
+  node-browsers:
+    docker:
+      - image: circleci/node:10-browsers
+
+commands:
+  restore-repo:
+    steps:
+      - restore_cache:
+          keys:
+            - v1-repo-{{ .Branch }}-{{ .Revision }}
+            - v1-repo-{{ .Branch }}
+            - v1-repo
+
+  restore-js-deps:
+    steps:
+      - restore_cache:
+          keys:
+            - v1-dependency-js-deps-{{ checksum "yarn.lock" }}
+            - v1-dependency-js-deps
+
+jobs:
+  checkout-code:
+    executor: node
+    steps:
+      - restore-repo
+      - checkout
+      - save_cache:
+          key: v1-repo-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - .
+
+  dependencies:
+    executor: node
+    steps:
+      - restore-repo
+      - restore-js-deps
+      - run: yarn install
+      - save_cache:
+          key: v1-dependency-js-deps-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+
+  test:
+    executor: node
+    environment:
+      JEST_JUNIT_OUTPUT: 'test-results/jest/results.xml'
+    steps:
+      - restore-repo
+      - restore-js-deps
+      - run: yarn lerna run test --since
+      - store_test_results:
+          path: 'test-results'
+
+  deploy:
+    executor: node
+    steps:
+      - restore-repo
+      - restore-js-deps
+
+      # This ssh-rsa public key comes from our "checkout_code" command.
+      - run: |
+          mkdir -p ~/.ssh
+
+          echo 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
+          ' >> ~/.ssh/known_hosts
+
+      # Setup for Git and NPM publishing
+      - run: |
+          git config --global user.email "$GH_EMAIL"
+          git config --global user.name "$GH_NAME"
+
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+
+      - run: yarn release
+
+workflows:
+  version: 2
+
+  test-and-publish:
+    jobs:
+      - checkout-code
+      - dependencies:
+          requires:
+            - checkout-code
+      - test:
+          requires:
+            - dependencies
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master

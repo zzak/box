@@ -1,0 +1,16 @@
+{
+  "name": "box",
+  "private": true,
+  "author": "Zachary Scott <mail@zzak.io>",
+  "repository": "git@github.com:zzak/box.git",
+  "devDependencies": {
+    "auto": "^7.0.7",
+    "lerna": "^3.14.1"
+  },
+  "scripts": {
+    "release": "./scripts/shipit.sh"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
