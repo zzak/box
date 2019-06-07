@@ -5,6 +5,7 @@
   "repository": "git@github.com:zzak/box.git",
   "devDependencies": {
     "auto": "^7.0.7",
+    "dotenv": "^8.0.0",
     "lerna": "^3.14.1"
   },
   "scripts": {
