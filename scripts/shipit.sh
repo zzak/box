@@ -5,7 +5,7 @@ set -o errexit
 # exit when pipes fail
 set -o pipefail
 
-VERSION=$(./node_modules/.bin/auto version --verbose 2>error)
+VERSION=$(./node_modules/.bin/auto version)
 
 cat error
 
