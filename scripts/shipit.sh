@@ -5,7 +5,7 @@ set -o errexit
 # exit when pipes fail
 set -o pipefail
 
-VERSION=$(./node_modules/.bin/auto version)
+VERSION=$(./node_modules/.bin/auto version --verbose)
 
 echo "Trying to bump: $VERSION"
 
