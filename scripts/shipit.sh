@@ -10,5 +10,6 @@ VERSION=$(./node_modules/.bin/auto version --verbose)
 echo "Trying to bump: $VERSION"
 
 if [ ! -z "$VERSION" ]; then
+    yarn auto changelog
     yarn lerna publish --loglevel verbose --yes "$VERSION" -m "$VERSION [skip ci]"
 fi
